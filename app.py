@@ -34,8 +34,11 @@ def home():
     if form.validate_on_submit():
         print(form.name.data)
         word = form.name.data.strip()
-        data = get_data(word=word)
-        return render_template('index.html', data=data, form=form)
+        header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;', }
+        print(os.environ.get('token'))
+        base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
+        data = requests.get(base_url, headers=header)
+        return render_template('index.html', data=data.json(), form=form)
 
     return render_template('index.html', data='', form=form)
 
