@@ -31,7 +31,7 @@ def get_data(word):
 @app.route('/', methods=['GET', 'POST'])
 def home():
     form = MyForm()
-
+    print('RUNNING')
     if request.method == 'POST':
         print(form.name.data)
         word = form.name.data.strip()
