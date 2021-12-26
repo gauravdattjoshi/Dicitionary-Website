@@ -5,11 +5,11 @@ import requests
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
-wtf_secret_key = os.environ.get('WTF_CSRF_SECRET_KEY')
-secret_key = os.environ.get('SECRET_KEY')
+
 app = Flask(__name__)
+secret_key = os.urandom(32)
 app.config['SECRET_KEY'] = secret_key
-app.config['WTF_CSRF_SECRET_KEY'] = wtf_secret_key
+
 
 class MyForm(FlaskForm):
     name = StringField(label='', validators=[DataRequired()], render_kw={"placeholder": "Enter the word"})
