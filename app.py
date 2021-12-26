@@ -8,7 +8,7 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-
+app.config['WTF_CSRF_SECRET_KEY'] = os.environ.get('WTF_CSRF_SECRET_KEY')
 
 class MyForm(FlaskForm):
     name = StringField(label='', validators=[DataRequired()], render_kw={"placeholder": "Enter the word"})
