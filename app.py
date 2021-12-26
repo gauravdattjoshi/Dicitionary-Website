@@ -48,8 +48,8 @@ def home():
             print(data)
 
         return render_template('index.html', data=data.json(), form=form)
-
-    return render_template('index.html', data='', form=form)
+    else:
+        return render_template('index.html', data='', form=form)
 
 
 if __name__ == '__main__':
