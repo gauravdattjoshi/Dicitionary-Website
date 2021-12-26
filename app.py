@@ -36,13 +36,12 @@ def home():
         print(form.name.data)
         word = form.name.data.strip()
         header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;',
-                  'Accept': 'application/json'}
+                  'Content-Type': 'application/json'}
         print(os.environ.get('token'))
         base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
 
         try:
-            data = requests.get(base_url, headers=header)
-            print(data)
+            data = requests.get(base_url, headers=header,)
         except:
             time.sleep(2)
             data = requests.get(base_url, headers=header)
