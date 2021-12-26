@@ -18,7 +18,7 @@ class MyForm(FlaskForm):
 
 
 def get_data(word):
-    header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;', }
+    header = {'authorization': os.environ.get('token') }
     print(os.environ.get('token'))
     base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
     data = requests.get(base_url, headers=header)
