@@ -5,7 +5,9 @@ import requests
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 secret_key = os.urandom(32)
 app.config['SECRET_KEY'] = secret_key
