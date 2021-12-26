@@ -1,7 +1,7 @@
 import os
 import time
 
-from flask import Flask, app, render_template, request
+from flask import Flask, render_template, request
 import requests
 from flask_wtf import FlaskForm
 from wtforms import StringField
@@ -35,8 +35,12 @@ def home():
     if request.method == 'POST':
         print(form.name.data)
         word = form.name.data.strip()
+
         header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;',
-                  'Content-Type': 'application/json'}
+                  'Content-Type': 'application/json',
+                  'User-Agent':  request.user_agent
+
+                  }
         print(os.environ.get('token'))
         base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
 
