@@ -7,7 +7,7 @@ from wtforms import StringField
 from wtforms.validators import DataRequired
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
 class MyForm(FlaskForm):
@@ -15,7 +15,7 @@ class MyForm(FlaskForm):
 
 
 def get_data(word):
-    header = {'authorization': os.environ['token'], 'Accept-Language': 'en-IN,en-US,en-GB;', }
+    header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;', }
     base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
     data = requests.get(base_url, headers=header)
     print(data)
