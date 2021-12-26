@@ -16,14 +16,12 @@ class MyForm(FlaskForm):
 
 
 def get_data(word):
-    header = {'authorization': 'Token 8d14b30bd462f0d90af79d831f4e56753a6a1c74', 'Accept-Language': 'en-IN,en-US,en-GB;', }
+    header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;', }
+    print(os.environ.get('token'))
     base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
-    try:
-        data = requests.get(base_url, headers=header)
-        print(data)
-        print(data.json())
-    except:
-        print('exception')
+    data = requests.get(base_url, headers=header)
+    print(data)
+    print(data.json())
     return data.json()
 
 
@@ -34,8 +32,7 @@ def home():
     if form.validate_on_submit():
         print(form.name.data)
         word = form.name.data.strip()
-        dict_word = word.lower()
-        data = get_data(word=dict_word)
+        data = get_data(word=word)
         return render_template('index.html', data=data, form=form)
 
     return render_template('index.html', data='', form=form)
