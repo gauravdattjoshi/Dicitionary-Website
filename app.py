@@ -36,9 +36,10 @@ def home():
         if request.method == 'POST':
             print(form.name.data)
             word = form.name.data.strip()
-            header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;',
-                      'Content-Type': 'application/json',
-                      'User-Agent': request.user_agent
+            header = {'authorization': os.environ.get('token'),
+                      # 'Accept-Language': 'en-IN,en-US,en-GB;',
+                      # 'Content-Type': 'application/json',
+                      # 'User-Agent': request.user_agent
 
                       }
             print(os.environ.get('token'))
