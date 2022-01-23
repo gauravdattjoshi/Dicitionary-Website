@@ -37,10 +37,9 @@ def home():
             print(form.name.data)
             word = form.name.data.strip()
             header = {'authorization': os.environ.get('token'),
-                      # 'Accept-Language': 'en-IN,en-US,en-GB;',
-                      # 'Content-Type': 'application/json',
-                      # 'User-Agent': request.user_agent
-
+                      'Accept-Language': 'en-IN,en-US,en-GB;',
+                      'Content-Type': 'application/json',
+                      'user-agent': request.user_agent.string
                       }
             print(os.environ.get('token'))
             base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
