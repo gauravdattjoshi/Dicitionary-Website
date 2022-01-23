@@ -47,6 +47,7 @@ def home():
 
             try:
                 data = requests.get(base_url, headers=header, )
+                print(data,data.json())
             except:
                 time.sleep(2)
                 data = requests.get(base_url, headers=header)
