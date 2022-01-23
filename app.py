@@ -36,10 +36,10 @@ def home():
         if request.method == 'POST':
             print(form.name.data)
             word = form.name.data.strip()
-            header = {'authorization': os.environ.get('token'),
+            header = {'Authorization': os.environ.get('token'),
                       'Accept-Language': 'en-IN,en-US,en-GB;',
                       'Content-Type': 'application/json',
-                      'user-agent': request.user_agent.string
+                      'User-Agent': request.headers.get('User-Agent')
                       }
             print(os.environ.get('token'))
             base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
