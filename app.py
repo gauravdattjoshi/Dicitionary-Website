@@ -32,26 +32,26 @@ def get_data(word):
 def home():
     form = MyForm()
     print('RUNNING')
-    if form.validate_on_submit()
-    if request.method == 'POST':
-        print(form.name.data)
-        word = form.name.data.strip()
-        header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;',
-                  'Content-Type': 'application/json',
-                  'User-Agent':  request.user_agent
+    if form.validate_on_submit():
+        if request.method == 'POST':
+            print(form.name.data)
+            word = form.name.data.strip()
+            header = {'authorization': os.environ.get('token'), 'Accept-Language': 'en-IN,en-US,en-GB;',
+                      'Content-Type': 'application/json',
+                      'User-Agent': request.user_agent
 
-                  }
-        print(os.environ.get('token'))
-        base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
+                      }
+            print(os.environ.get('token'))
+            base_url = f'https://owlbot.info/api/v4/dictionary/{word}'
 
-        try:
-            data = requests.get(base_url, headers=header, )
-        except:
-            time.sleep(2)
-            data = requests.get(base_url, headers=header)
-            print(data)
+            try:
+                data = requests.get(base_url, headers=header, )
+            except:
+                time.sleep(2)
+                data = requests.get(base_url, headers=header)
+                print(data)
 
-        return render_template('index.html', data=data.json(), form=form)
+            return render_template('index.html', data=data.json(), form=form)
     else:
         return render_template('index.html', data='', form=form)
 
